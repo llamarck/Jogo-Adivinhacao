@@ -15,8 +15,8 @@
 #define HARD 5;
 
 int main(){
-	int play = 0;
-	while(play == 0){
+	int play = 1;
+	while(play == 1){
 		printf("\n\n");
 		printf("          P  /_\\  P                              \n");
 		printf("         /_\\_|_|_/_\\                            \n");
@@ -37,9 +37,8 @@ int main(){
 		fflush(stdout);
 		scanf("%d", &end_limit);
 		fflush(stdout);
-
-		srand(begin_limit);
-		int secret_number = rand() % end_limit;
+		//srand(begin_limit);
+		int secret_number = (rand() % (end_limit + 1 - begin_limit)) + begin_limit;
 		int guess;
 		int hit;
 		int i; //bug do Eclipse; lembrar de mudar a especificação para C99 ao invés de C89
@@ -92,14 +91,14 @@ int main(){
 			if(last_number != guess){
 				last_number = guess;
 			}else{
-				printf("Você já chutou este número na última tentativa!");
+				printf("Você já chutou este número na última tentativa!\n");
 				i--;
 				continue;
 			}
 			hit = guess == secret_number;
 			bigger = guess > secret_number;
 			if(guess < 0){
-				printf("Você não pode chutar números negativos!");
+				printf("Você não pode chutar números negativos!\n");
 				i--;
 				continue;
 			}
@@ -139,7 +138,7 @@ int main(){
 			  printf("Parabéns, você ACERTOU!\n");
 			  printf("Jogue de novo, você é um bom jogador!\n");
 			  printf("Você fez %.2f pontos em %d tentativas! \n", score, i);
-			  printf("Deseja jogar novamente?");
+			  printf("Deseja jogar novamente?\n");
 			  fflush(stdout);
 			  printf("Sim(1)  Não(0)\n");
 			  fflush(stdout);
@@ -158,5 +157,6 @@ int main(){
 			  scanf("%d", &play);
 		  }
 		}
+		printf("Até mais!");
 		return 0;
 	}
