@@ -16,147 +16,151 @@
 
 int main(){
 	int play = 1;
-	while(play == 1){
-		printf("\n\n");
-		printf("          P  /_\\  P                              \n");
-		printf("         /_\\_|_|_/_\\                            \n");
-		printf("     n_n | ||. .|| | n_n         Bem vindo ao     \n");
-		printf("     |_|_|nnnn nnnn|_|_|     Jogo de Adivinhação! \n");
-		printf("    |\" \"  |  |_|  |\"  \" |                     \n");
-		printf("    |_____| ' _ ' |_____|                         \n");
-		printf("          \\__|_|__/                              \n");
-		printf("\n\n\n");
+	do{
+		while(play == 1){
+			printf("\n\n");
+			printf("          P  /_\\  P                              \n");
+			printf("         /_\\_|_|_/_\\                            \n");
+			printf("     n_n | ||. .|| | n_n         Bem vindo ao     \n");
+			printf("     |_|_|nnnn nnnn|_|_|     Jogo de Adivinhação! \n");
+			printf("    |\" \"  |  |_|  |\"  \" |                     \n");
+			printf("    |_____| ' _ ' |_____|                         \n");
+			printf("          \\__|_|__/                              \n");
+			printf("\n\n\n");
 
-		int begin_limit;
-		int end_limit;
-		printf("Determine o limite inicial do número secreto: ");
-		fflush(stdout);
-		scanf("%d", &begin_limit);
-		fflush(stdout);
-		printf("Determine o limite final do número secreto: ");
-		fflush(stdout);
-		scanf("%d", &end_limit);
-		fflush(stdout);
-		//srand(begin_limit);
-		int secret_number = (rand() % (end_limit + 1 - begin_limit)) + begin_limit;
-		int guess;
-		int hit;
-		int i; //bug do Eclipse; lembrar de mudar a especificação para C99 ao invés de C89
-		int bigger;
-		//int win = 0;
-		//int attempts = 1;
-		double score = 1000;
-		double damage;
-		int level;
-		int total_attempts;
-		int last_number = NULL;
-
-		printf("Qual o nível de dificuldade?\n");
-		fflush(stdout);
-		printf("[1] Fácil [2] Normal [3] Difícil\n\n");
-		fflush(stdout);
-		printf("Escolha: \n");
-		fflush(stdout);
-		scanf("%d", &level);
-		fflush(stdout);
-
-		/*if(level == 1){
-			total_attempts = 20;
-		}else if(level == 2){
-			total_attempts = 10;
-		}else{
-			total_attempts = 5;
-		}*/
-
-		switch(level){
-			case 1:
-				total_attempts = EASY;
-				break;
-			case 2:
-				total_attempts = NORMAL;
-				break;
-			default:
-				total_attempts = HARD;
-				break;
-		}
-
-		//for (int i = 1; i <= 3; i++){
-		  for (i = 1; i <= /*ATTEMPTS*/ total_attempts; i++){ //não usar constantes por enquanto, bug
-		//while(/*!win*/ 1){
-			printf("Chute um número:\n");
-			fflush(stdout); //forma de liberar o buffer do Eclipse
-			scanf("%d", &guess);
+			int begin_limit;
+			int end_limit;
+			printf("Determine o limite inicial do número secreto: ");
 			fflush(stdout);
-			printf("Você chutou o número %d!\n", guess);
-			if(last_number != guess){
-				last_number = guess;
+			scanf("%d", &begin_limit);
+			fflush(stdout);
+			printf("Determine o limite final do número secreto: ");
+			fflush(stdout);
+			scanf("%d", &end_limit);
+			fflush(stdout);
+			//srand(begin_limit);
+			int secret_number = (rand() % (end_limit + 1 - begin_limit)) + begin_limit;
+			int guess;
+			int hit;
+			int i; //bug do Eclipse; lembrar de mudar a especificação para C99 ao invés de C89
+			int bigger;
+			//int win = 0;
+			//int attempts = 1;
+			double score = 1000;
+			double damage;
+			int level;
+			int total_attempts;
+			int last_number = NULL;
+
+			printf("Qual o nível de dificuldade?\n");
+			fflush(stdout);
+			printf("[1] Fácil [2] Normal [3] Difícil\n\n");
+			fflush(stdout);
+			printf("Escolha: \n");
+			fflush(stdout);
+			scanf("%d", &level);
+			fflush(stdout);
+
+			/*if(level == 1){
+				total_attempts = 20;
+			}else if(level == 2){
+				total_attempts = 10;
 			}else{
-				printf("Você já chutou este número na última tentativa!\n");
-				i--;
-				continue;
-			}
-			hit = guess == secret_number;
-			bigger = guess > secret_number;
-			if(guess < 0){
-				printf("Você não pode chutar números negativos!\n");
-				i--;
-				continue;
+				total_attempts = 5;
+			}*/
+
+			switch(level){
+				case 1:
+					total_attempts = EASY;
+					break;
+				case 2:
+					total_attempts = NORMAL;
+					break;
+				default:
+					total_attempts = HARD;
+					break;
 			}
 
-			//if (secret_number == guess){
-			if (hit){
-				break;
-				//win = 1;
-			}else if (bigger){
-				printf("ERROU!\n");
-				printf("Dica: seu número foi maior que o número secreto!\n");
-			}else{
-				printf("ERROU!\n");
-				printf("Dica: seu número foi menor que o número secreto!\n");
-			}
+			//for (int i = 1; i <= 3; i++){
+			  for (i = 1; i <= /*ATTEMPTS*/ total_attempts; i++){ //não usar constantes por enquanto, bug
+			//while(/*!win*/ 1){
+				printf("Chute um número:\n");
+				fflush(stdout); //forma de liberar o buffer do Eclipse
+				scanf("%d", &guess);
+				fflush(stdout);
+				printf("Você chutou o número %d!\n", guess);
+				if(last_number != guess){
+					last_number = guess;
+				}else{
+					printf("Você já chutou este número na última tentativa!\n");
+					i--;
+					continue;
+				}
+				hit = guess == secret_number;
+				bigger = guess > secret_number;
+				if(guess < 0){
+					printf("Você não pode chutar números negativos!\n");
+					i--;
+					continue;
+				}
 
-			damage = abs(guess - secret_number)/2.0;
-			score = score - damage;
-			i++;
-		  }
-		  if(hit){
-			  printf("             OOOOOOOOOOO               \n");
-			  printf("         OOOOOOOOOOOOOOOOOOO           \n");
-			  printf("      OOOOOO  OOOOOOOOO  OOOOOO        \n");
-			  printf("    OOOOOO      OOOOO      OOOOOO      \n");
-			  printf("  OOOOOOOO  #   OOOOO  #   OOOOOOOO    \n");
-			  printf(" OOOOOOOOOO    OOOOOOO    OOOOOOOOOO   \n");
-			  printf("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO  \n");
-			  printf("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO  \n");
-			  printf("OOOO  OOOOOOOOOOOOOOOOOOOOOOOOO  OOOO  \n");
-			  printf(" OOOO  OOOOOOOOOOOOOOOOOOOOOOO  OOOO   \n");
-			  printf("  OOOO   OOOOOOOOOOOOOOOOOOOO  OOOO    \n");
-			  printf("    OOOOO   OOOOOOOOOOOOOOO   OOOO     \n");
-			  printf("      OOOOOO   OOOOOOOOO   OOOOOO      \n");
-			  printf("         OOOOOO         OOOOOO         \n");
-			  printf("             OOOOOOOOOOOO              \n");
-			  printf("Parabéns, você ACERTOU!\n");
-			  printf("Jogue de novo, você é um bom jogador!\n");
-			  printf("Você fez %.2f pontos em %d tentativas! \n", score, i);
-			  printf("Deseja jogar novamente?\n");
-			  fflush(stdout);
-			  printf("Sim(1)  Não(0)\n");
-			  fflush(stdout);
-			  scanf("%d", &play);
-		  }else{
-			  printf("       \\|/ ____ \\|/    \n");
-			  printf("        @~/ ,. \\~@      \n");
-			  printf("       /_( \\__/ )_\\    \n");
-			  printf("          \\__U_/        \n");
-			  printf("Game Over! Você perdeu, então tente novamente!\n");
-			  printf("Você fez %2.f pontos. O número secreto era %d!\n", score, secret_number);
-			  printf("Deseja jogar novamente?\n");
-			  fflush(stdout);
-			  printf("Sim(1)  Não(0)\n");
-			  fflush(stdout);
-			  scanf("%d", &play);
-		  }
-		}
-		printf("Até mais!");
-		return 0;
+				//if (secret_number == guess){
+				if (hit){
+					break;
+					//win = 1;
+				}else if (bigger){
+					printf("ERROU!\n");
+					printf("Dica: seu número foi maior que o número secreto!\n");
+				}else{
+					printf("ERROU!\n");
+					printf("Dica: seu número foi menor que o número secreto!\n");
+				}
+
+				damage = abs(guess - secret_number)/2.0;
+				score = score - damage;
+				i++;
+			  }
+			  if(hit){
+				  printf("             OOOOOOOOOOO               \n");
+				  printf("         OOOOOOOOOOOOOOOOOOO           \n");
+				  printf("      OOOOOO  OOOOOOOOO  OOOOOO        \n");
+				  printf("    OOOOOO      OOOOO      OOOOOO      \n");
+				  printf("  OOOOOOOO  #   OOOOO  #   OOOOOOOO    \n");
+				  printf(" OOOOOOOOOO    OOOOOOO    OOOOOOOOOO   \n");
+				  printf("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO  \n");
+				  printf("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO  \n");
+				  printf("OOOO  OOOOOOOOOOOOOOOOOOOOOOOOO  OOOO  \n");
+				  printf(" OOOO  OOOOOOOOOOOOOOOOOOOOOOO  OOOO   \n");
+				  printf("  OOOO   OOOOOOOOOOOOOOOOOOOO  OOOO    \n");
+				  printf("    OOOOO   OOOOOOOOOOOOOOO   OOOO     \n");
+				  printf("      OOOOOO   OOOOOOOOO   OOOOOO      \n");
+				  printf("         OOOOOO         OOOOOO         \n");
+				  printf("             OOOOOOOOOOOO              \n");
+				  printf("Parabéns, você ACERTOU!\n");
+				  printf("Jogue de novo, você é um bom jogador!\n");
+				  printf("Você fez %.2f pontos em %d tentativas! \n", score, i);
+				  printf("Deseja jogar novamente?\n");
+				  fflush(stdout);
+				  printf("Sim(1)  Não(0)\n");
+				  fflush(stdout);
+				  scanf("%d", &play);
+			  }else{
+				  printf("       \\|/ ____ \\|/    \n");
+				  printf("        @~/ ,. \\~@      \n");
+				  printf("       /_( \\__/ )_\\    \n");
+				  printf("          \\__U_/        \n");
+				  printf("Game Over! Você perdeu, então tente novamente!\n");
+				  printf("Você fez %2.f pontos. O número secreto era %d!\n", score, secret_number);
+				  printf("Deseja jogar novamente?\n");
+				  fflush(stdout);
+				  printf("Sim(1)  Não(0)\n");
+				  fflush(stdout);
+				  scanf("%d", &play);
+			  }
+			}
+	}while(!play);
+
+	printf("Até mais!");
+
+	return 0;
 	}
